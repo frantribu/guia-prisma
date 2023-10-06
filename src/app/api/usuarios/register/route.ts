@@ -24,6 +24,15 @@ export async function POST(req: Request) {
 
   const usuarioSubido = await prisma.usuario.create({ data: usuarioAGuardar });
 
+  const updateUsuario = await prisma.usuario.update({
+    where: {
+      email: 'franco1@gmail.com',
+    },
+    data: {
+      activo: false
+    },
+  })
+
   if (!usuarioSubido)
     return new Response("No se pudo subir el usuario!", { status: 500 });
 
